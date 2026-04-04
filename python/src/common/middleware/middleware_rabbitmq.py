@@ -48,6 +48,7 @@ class MessageMiddlewareQueueRabbitMQ(MessageMiddlewareQueue):
             raise MessageMiddlewareCloseError(e)
 
 
+# edit: uso direct para simplificar, pero se podría usar topic en caso de que se necesiten patrones de routing keys más complejos
 class MessageMiddlewareExchangeRabbitMQ(MessageMiddlewareExchange):
 
     def __init__(self, host, exchange_name, routing_keys):
