@@ -1,6 +1,4 @@
 import pika
-import random
-import string
 from .middleware import MessageMiddlewareQueue, MessageMiddlewareExchange, MessageMiddlewareCloseError
 
 
@@ -12,7 +10,7 @@ class MessageMiddlewareQueueRabbitMQ(MessageMiddlewareQueue):
             pika.ConnectionParameters(host=host)
         )
         self._channel = self._connection.channel()
-        # la cola sobrevive reinicios del broker
+        # durable para que la cola sobreviva reinicios del broker
         self._channel.queue_declare(queue=queue_name, durable=True)
 
     def send(self, message):
